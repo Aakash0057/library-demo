@@ -1,40 +1,28 @@
-class Library:
+class LibraryManager:
     def __init__(self):
         self.books = {}
 
     def add_book(self, title):
-        if not title:
-            return "Invalid title"
-        self.books[title] = True
-        return f"Book '{title}' added successfully."
+        if not title or not title.strip():
+            return "Error: Title cannot be empty."
+        cleaned_title = title.strip()
+        self.books[cleaned_title] = True
+        return f"Book '{cleaned_title}' added successfully."
 
     def view_books(self):
         if not self.books:
             return "No books available in the library."
-        return "\n".join([f"- {title} ({'Available' if status else 'Issued'})" for title, status in self.books.items()])
+        return "\n".join([f"- {title} ({'Available' if available else 'Issued'})" for title, available in self.books.items()])
 
     def issue_book(self, title):
-        if title not in self.books:
-            return f"Error: Book '{title}' does not exist in the library."
-        if not self.books[title]:
-            return f"Error: Book '{title}' is already issued."
-        
-        self.books[title] = False  
-        return f"Book '{title}' has been issued successfully."
+        return "Feature under construction in Push 1."
 
 def menu():
-    lib = Library()
-    print("\n--- Library Management System ---")
-    lib.add_book("Python Basics")
-    lib.add_book("Kubernetes Guide")
-    
-    print("\nInitial State:")
-    print(lib.view_books())
-    
-    print("\nIssuing 'Python Basics'...")
-    print(lib.issue_book("Python Basics"))
-    
-    print("\nUpdated State:")
+    lib = LibraryManager()
+    print("--- Library Management System ---")
+    print(lib.add_book("Python Automation"))
+    print(lib.add_book("Kubernetes Internals"))
+    print("\nCurrent Inventory Status:")
     print(lib.view_books())
 
 if __name__ == "__main__":

@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: library-app
-        image: placeholder-username/library-app:latest
+        image: aakash0057/library-app:latest
         ports:
         - containerPort: 80
 ---
@@ -27,6 +27,7 @@ spec:
   selector:
     app: library-app
   ports:
-  - protocol: TCP
-  - port: 80
+  - name: http
+    protocol: TCP
+    port: 80
     targetPort: 80
