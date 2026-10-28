@@ -15,14 +15,24 @@ class LibraryManager:
         return "\n".join([f"- {title} ({'Available' if available else 'Issued'})" for title, available in self.books.items()])
 
     def issue_book(self, title):
-        return "Feature under construction in Push 1."
+        cleaned_title = title.strip()
+        if cleaned_title not in self.books:
+            return f"Error: Book '{cleaned_title}' does not exist."
+        if not self.books[cleaned_title]:
+            return f"Error: Book '{cleaned_title}' is already issued."
+        self.books[cleaned_title] = False
+        return f"Book '{cleaned_title}' has been issued successfully."
 
 def menu():
     lib = LibraryManager()
     print("--- Library Management System ---")
     print(lib.add_book("Python Automation"))
     print(lib.add_book("Kubernetes Internals"))
-    print("\nCurrent Inventory Status:")
+    print("\nInitial Inventory Status:")
+    print(lib.view_books())
+    print("\nIssuing Python Automation:")
+    print(lib.issue_book("Python Automation"))
+    print("\nUpdated Inventory Status:")
     print(lib.view_books())
 
 if __name__ == "__main__":
