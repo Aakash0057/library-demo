@@ -1,5 +1,3 @@
-import time
-
 class LibraryManager:
     def __init__(self):
         self.books = {}
@@ -28,17 +26,14 @@ class LibraryManager:
 def menu():
     lib = LibraryManager()
     print("--- Library Management System ---")
-    print(lib.add_book("Python Basics"))
-    print(lib.add_book("Kubernetes Guide"))
-    print("\nInitial State:")
+    print(lib.add_book("Python Automation"))
+    print(lib.add_book("Kubernetes Internals"))
+    print("\nInitial Inventory Status:")
     print(lib.view_books())
-    print("\nIssuing 'Python Basics'...")
-    print(lib.issue_book("Python Basics"))
-    print("\nUpdated State:")
+    print("\nIssuing Python Automation:")
+    print(lib.issue_book("Python Automation"))
+    print("\nUpdated Inventory Status:")
     print(lib.view_books())
-    
-    while True:
-        time.sleep(3600)
 
 if __name__ == "__main__":
     menu()
